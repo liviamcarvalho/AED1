@@ -1,7 +1,6 @@
 #include <stdio.h>
 
 int main() {
-
     int idadeemdias, anos = 0, meses = 0, dias = 0, i;
     scanf("%d", &idadeemdias);
     anos = idadeemdias / 365;
@@ -12,6 +11,5 @@ int main() {
     printf("%d ano(s)\n", anos);
     printf("%d mes(es)\n", meses);
     printf("%d dia(s)\n", dias);
-
     return 0;
 }
