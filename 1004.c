@@ -1,6 +1,6 @@
 #include <stdio.h>
  
-int main() {
+int main(){
     int A, B, PROD;
     scanf("%d%d", &A, &B);
     PROD = A * B;
