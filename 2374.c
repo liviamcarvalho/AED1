@@ -1,6 +1,6 @@
 #include <stdio.h>
  
-int main() {
+int main(){
     int N, M, dif;
     do scanf("%d", &N);
     while (N < 1 || N > 40);
