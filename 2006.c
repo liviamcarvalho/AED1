@@ -1,6 +1,6 @@
 #include <stdio.h>
  
-int main() {
+int main(){
     int T, A, B, C, D, E, corretos = 0;
     scanf("%d\n", &T);
     scanf("%d %d %d %d %d\n", &A, &B, &C, &D, &E);
