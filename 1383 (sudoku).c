@@ -1,6 +1,6 @@
 #include <stdio.h>
+
 int verificamatriz(int mat[9][9]){
-    //verifica as linhas
     for(int i = 0; i < 9; i++){
         int usado[10] = {0};
         for(int j = 0; j < 9; j++){
@@ -8,7 +8,6 @@ int verificamatriz(int mat[9][9]){
             usado[mat[i][j]] = 1;
         }
     }
-    //verifica as colunas
     for(int j = 0; j < 9; j++){
         int usado[10] = {0};
         for(int i = 0; i < 9; i++){
@@ -16,8 +15,7 @@ int verificamatriz(int mat[9][9]){
             usado[mat[i][j]] = 1;
         }
     }
-    // verifica os blocos
-    for(int blocoi = 0; blocoi <3; blocoi ++){
+    for(int blocoi = 0; blocoi < 3; blocoi ++){
         for(int blocoj = 0; blocoj < 3; blocoj ++){
             int usado[10] = {0};
             for(int i = blocoi * 3; i < (blocoi * 3) + 3; i++){
@@ -29,6 +27,7 @@ int verificamatriz(int mat[9][9]){
         }
     }
 }
+
 int main(){
     int k, sudoku[9][9];
     do scanf("%d", &k);
