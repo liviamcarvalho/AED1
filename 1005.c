@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-int main() {
+int main(){
     float A, B, pesoA, pesoB, soma, MEDIA;
     scanf("%f", &A);
     scanf("%f", &B);
