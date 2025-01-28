@@ -2,32 +2,26 @@
 #include <stdlib.h>
 #include <string.h>
 
-// Estrutura para a célula da pilha
-typedef struct celula {
+typedef struct celula{
     char conteudo;
     struct celula *proximo;
 } celula;
 
-// Estrutura da pilha
-typedef struct {
+typedef struct{
     celula *topo;
 } Pilha;
 
-// Inicializa a pilha
-void inicializaPilha(Pilha *pilha) {
+void inicializaPilha(Pilha *pilha){
     pilha->topo = NULL;
 }
 
-// Verifica se a pilha está vazia
-int estaVazia(Pilha *pilha) {
+int estaVazia(Pilha *pilha){
     return pilha->topo == NULL;
 }
 
-// Empilha um caractere
-void empilha(Pilha *pilha, char conteudo) {
+void empilha(Pilha *pilha, char conteudo){
     celula *novacelula = (celula*)malloc(sizeof(celula));
-    if (novacelula == NULL) {
-        //Memoria insuficiente
+    if (novacelula == NULL){
         exit(1);
     }
     novacelula->conteudo = conteudo;
@@ -35,9 +29,8 @@ void empilha(Pilha *pilha, char conteudo) {
     pilha->topo = novacelula;
 }
 
-// Desempilha um caractere
-char desempilha(Pilha *pilha) {
-    if (estaVazia(pilha)) {
+char desempilha(Pilha *pilha){
+    if(estaVazia(pilha)){
         return '\0';
     }
     celula *noTemp = pilha->topo;
@@ -47,59 +40,47 @@ char desempilha(Pilha *pilha) {
     return conteudo;
 }
 
-// Libera a memória da pilha
-void liberaPilha(Pilha *pilha) {
-    while (!estaVazia(pilha)) {
+void liberaPilha(Pilha *pilha){
+    while(!estaVazia(pilha)){
         desempilha(pilha);
     }
 }
 
-// Função que verifica se a expressão está correta
-int expressaoValida(const char *expressao) {
+int expressaoValida(const char *expressao){
     Pilha pilha;
     inicializaPilha(&pilha);
-
-    for (int i = 0; expressao[i] != '\0'; i++) {
-        if (expressao[i] == '(') {
+    for(int i = 0; expressao[i] != '\0'; i++){
+        if(expressao[i] == '('){
             empilha(&pilha, '(');
         }
-        else if (expressao[i] == ')') {
-            if (estaVazia(&pilha)) {
+        else if(expressao[i] == ')'){
+            if(estaVazia(&pilha)){
                 liberaPilha(&pilha);
-                return 0; // Fecha parênteses sem correspondente aberto
+                return 0;
             }
             desempilha(&pilha);
         }
     }
-
-    int resultado = estaVazia(&pilha); // Verdadeiro se todos os parênteses foram fechados
+    int resultado = estaVazia(&pilha);
     liberaPilha(&pilha);
     return resultado;
 }
 
-int main() {
-    char expressao[1001]; // 1000 caracteres + '\0'
-
-    // Lê as expressões até encontrar EOF
-    while (fgets(expressao, sizeof(expressao), stdin) != NULL) {
-        // Remove o '\n' do final da string, se existir
+int main(){
+    char expressao[1001];
+    while(fgets(expressao, sizeof(expressao), stdin) != NULL){
         size_t tamanho = strlen(expressao);
-        if (tamanho > 0 && expressao[tamanho-1] == '\n') {
+        if(tamanho > 0 && expressao[tamanho-1] == '\n'){
             expressao[tamanho-1] = '\0';
         }
-
-        // Se a linha estiver vazia, pula
-        if (strlen(expressao) == 0) {
+        if(strlen(expressao) == 0){
             continue;
         }
-
-        // Verifica a expressão e imprime o resultado
-        if (expressaoValida(expressao)) {
+        if(expressaoValida(expressao)){
             printf("correct\n");
         } else {
             printf("incorrect\n");
         }
     }
-
     return 0;
 }
